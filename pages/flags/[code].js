@@ -4,7 +4,7 @@ import {gql} from "@apollo/client";
 export async function getStaticProps({ params: { code } }) {
     const { data } = await client.query({
         query: gql`
-        query Country($code: String!) {
+        query Country($code: ID!) {
           country(code: $code) {
             code
             emoji
@@ -42,7 +42,9 @@ export async function getStaticPaths() {
 export default function Flag({ country }) {
 
     return (
-        <div>
+        <div className="">
+            {country.emoji}
+            {country.code}
             {country.name}
         </div>
     )
