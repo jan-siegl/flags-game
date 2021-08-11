@@ -8,7 +8,7 @@ It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-
 
 Deployed to the cloud with [Vercel](https://vercel.com) ([Documentation](https://nextjs.org/docs/deployment)).
 
-[View](https://vercel.com)
+[View live](https://flags.jansiegl.cz/)
 
 ## How to use
 
