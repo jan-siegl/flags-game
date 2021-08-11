@@ -2,6 +2,9 @@ import client from "../../apollo-client"
 import {gql} from "@apollo/client"
 import {useState} from "react";
 import Link from "next/link";
+import Check from "../../components/game/Check";
+import Question from "../../components/game/Question";
+import Finish from "../../components/game/Finish";
 
 export async function getStaticProps({params: {game}}) {
     const {data} = await client.query({
@@ -32,55 +35,6 @@ export async function getStaticPaths() {
     }
 }
 
-function Finish(props) {
-    return (
-        <div
-            className="p-6 mt-6 text-center border w-96 rounded-xl">
-            <h3 className="text-2xl font-bold">You completed the game!</h3>
-            <p className="my-4">Your had <span
-                className="text-green-400">{props.points} {props.points === 1 ? "flag" : "flags"} correct</span> and <span
-                className="text-red-400">{props.wrong} {props.wrong === 1 ? "flag" : "flags"} wrong</span></p>
-            <Link href="/play"><a className="mt-4 px-4 hover:text-blue-600 focus:text-blue-600">Play again</a></Link>
-            <Link href="/flags"><a className="mt-4 px-4 hover:text-blue-600 focus:text-blue-600">Browse flags</a></Link>
-        </div>
-    )
-}
-
-function Check(props) {
-    return (
-        <div
-            className={props.correct ? "bg-green-400 p-6 mt-6 text-center border w-96 rounded-xl" : "bg-red-400 p-6 mt-6 text-center border w-96 rounded-xl"}>
-            <h3 className="text-5xl font-bold">{props.countries[props.currentIndex].emoji}</h3>
-            <p>{props.countries[props.currentIndex].name}</p>
-            <Link href={"/flags/" + props.countries[props.currentIndex].code}>
-                <a className="block text-xs hover:text-blue-600">
-                    Learn more
-                </a>
-            </Link>
-            <button onClick={props.nextCountry} className="mt-4 px-4 hover:text-blue-600 focus:text-blue-600">Next
-                Flag
-            </button>
-        </div>
-    )
-}
-
-function Question(props) {
-    return (
-        <form onSubmit={props.checkAnswer}
-              className="p-6 mt-6 text-center border w-96 rounded-xl"
-        >
-            <h3 className="text-5xl font-bold">{props.countries[props.currentIndex].emoji}</h3>
-            {props.hint ? <p className="block mb-4 text-sm">{props.countries[props.currentIndex].code}</p> :
-                <a href="#" onClick={props.showHint} className="block my-4 text-xs hover:text-blue-600">
-                    Get hint
-                </a>}
-            <input onChange={e => props.setAnswer(e.target.value)} type="text" placeholder="Country name"
-                   className="px-2 border rounded-xl"/>
-            <button type="submit" className="px-4 hover:text-blue-600 focus:text-blue-600">Check</button>
-        </form>
-    )
-}
-
 function Game(props) {
 
     //TODO find out if is possible to fetch 50 random
@@ -100,9 +54,11 @@ function Game(props) {
     const [points, setPoints] = useState(0)
     const [finished, setFinished] = useState(false)
     const [answer, setAnswer] = useState("")
+    const [answerCapital, setAnswerCapital] = useState("")
     const [answered, setAnswered] = useState(false)
     const [correct, setCorrect] = useState(false)
     const [hint, setHint] = useState(false)
+    const [hintCapital, setHintCapital] = useState(false)
 
     function addPoint() {
         setPoints(points + 1)
@@ -115,6 +71,7 @@ function Game(props) {
             setAnswered(false)
             setCorrect(false)
             setHint(false)
+            setHintCapital(false)
             setCurrentIndex(currentIndex + 1)
         } else {
             setFinished(true)
@@ -123,8 +80,15 @@ function Game(props) {
 
     function checkAnswer() {
         if (countries[currentIndex].name.toLowerCase() === answer.toLowerCase()) {
-            addPoint()
-            setCorrect(true)
+            if (props.difficulty === "hard") {
+                if (countries[currentIndex].capital.toLowerCase() === answerCapital.toLowerCase()) {
+                    addPoint()
+                    setCorrect(true)
+                }
+            } else {
+                addPoint()
+                setCorrect(true)
+            }
         }
         setAnswered(true)
     }
@@ -132,6 +96,11 @@ function Game(props) {
     function showHint(e) {
         e.preventDefault()
         setHint(true)
+    }
+
+    function showHintCapital(e) {
+        e.preventDefault()
+        setHintCapital(true)
     }
 
     return (
@@ -154,10 +123,10 @@ function Game(props) {
 
             <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
                 {finished ? <Finish points={points} wrong={countries.length - points}/> : (answered ?
-                    <Check correct={correct} countries={countries} currentIndex={currentIndex}
+                    <Check difficulty={props.difficulty} correct={correct} countries={countries} currentIndex={currentIndex}
                            nextCountry={nextCountry}/> :
                     <Question points={points} countries={countries} currentIndex={currentIndex}
-                              checkAnswer={checkAnswer} setAnswer={setAnswer} hint={hint} showHint={showHint}/>)}
+                              checkAnswer={checkAnswer} setAnswer={setAnswer} setAnswerCapital={setAnswerCapital} hint={hint} showHint={showHint} hintCapital={hintCapital} showHintCapital={showHintCapital} difficulty={props.difficulty} />)}
             </div>
         </main>
     )

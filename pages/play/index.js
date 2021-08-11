@@ -32,7 +32,7 @@ export default function Play() {
                         >
                             <h3 className="text-2xl font-bold">Easy 🚩</h3>
                             <p className="mt-4 text-xl">
-                                Learn about countries in an interactive EASY game!
+                                Learn about countries by guessing their name!
                             </p>
                         </a>
                     </Link>
@@ -44,7 +44,7 @@ export default function Play() {
                         >
                             <h3 className="text-2xl font-bold">Hard 🏴󠁳󠁴󠁸󠁿</h3>
                             <p className="mt-4 text-xl">
-                                Learn about countries in an interactive HARD game!
+                                Learn about countries by guessing their name and capital!
                             </p>
                         </a>
                     </Link>
