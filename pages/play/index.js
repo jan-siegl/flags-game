@@ -19,7 +19,7 @@ export default function Play() {
                 <p className="mt-3 text-2xl">
                     One game takes around{' '}
                     <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-                        3 minutes
+                        2 minutes
                     </code>
                 </p>
 

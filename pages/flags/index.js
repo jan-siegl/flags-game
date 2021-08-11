@@ -5,6 +5,7 @@ import client from "../../apollo-client"
 
 import FlagTile from "../../components/FlagTile"
 import {useState} from "react";
+import Link from "next/link";
 
 export async function getStaticProps() {
     const {data} = await client.query({
@@ -48,25 +49,37 @@ export default function Flags(props) {
     }
 
     return (
-        <div className="bg-gray-300">
+        <div className="">
             <Head>
                 <title>Flags game</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <div className="">
-                <form>
-                    <input onChange={search} type="text" placeholder="Search" />
-                    <select onChange={filter} name="Continent" id="continent">
-                        <option value="default">All continents</option>
-                        {continents.map((continent) => (<option value={continent.code}>{continent.name}</option>))}
-                    </select>
-                </form>
-            </div>
-            <div className="flex flex-wrap">
-                {countries.map((country) => (
-                    <FlagTile {...country} />
-                ))}
-            </div>
+            <main className="flex flex-col items-center justify-center w-full flex-1 px-20 pt-10 text-center">
+                <h1 className="text-6xl font-bold">
+                    Lets learn{' '}
+                    <Link href="/">
+                        <a className="text-blue-600">
+                            Flags!
+                        </a>
+                    </Link>
+                </h1>
+
+                <p className="mt-6 text-2xl">
+                    <form>
+                        <input onChange={search} type="text" placeholder="Search" />
+                        <select onChange={filter} name="Continent" id="continent">
+                            <option value="default">All continents</option>
+                            {continents.map((continent) => (<option value={continent.code}>{continent.name}</option>))}
+                        </select>
+                    </form>
+                </p>
+
+                <div className="flex flex-wrap items-center justify-center max-w-4xl mt-6 sm:w-full">
+                    {countries.map((country) => (
+                        <FlagTile {...country} />
+                    ))}
+                </div>
+            </main>
         </div>
     )
 }
