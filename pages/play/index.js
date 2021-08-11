@@ -24,7 +24,9 @@ export default function Play() {
                 </p>
 
                 <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
-                    <Link href="/play">
+                    <Link href={{
+                        pathname: '/play/easy'
+                    }}>
                         <a
                             className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
                         >
@@ -34,7 +36,9 @@ export default function Play() {
                             </p>
                         </a>
                     </Link>
-                    <Link href="/play">
+                    <Link href={{
+                        pathname: '/play/hard',
+                    }}>
                         <a
                             className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
                         >
