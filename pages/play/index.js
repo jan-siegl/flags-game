@@ -6,8 +6,8 @@ export default function Play() {
 
     return (
         <div className="">
-            <main className="flex flex-col items-center justify-center w-full flex-1 px-20 pt-10 text-center">
-                <h1 className="text-6xl font-bold">
+            <main className="main">
+                <h1 className="heading">
                     Lets play a{' '}
                     <Link href="/">
                         <a className="text-blue-600">
@@ -16,22 +16,22 @@ export default function Play() {
                     </Link>
                 </h1>
 
-                <p className="mt-3 text-2xl">
+                <p className="heading-subtext">
                     One game takes around{' '}
-                    <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
-                        2 minutes
+                    <code className="heading-code">
+                        2&nbsp;minutes
                     </code>
                 </p>
 
-                <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
+                <div className="block-container">
                     <Link href={{
                         pathname: '/play/easy'
                     }}>
                         <a
-                            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
+                            className="block"
                         >
-                            <h3 className="text-2xl font-bold">Easy 🚩</h3>
-                            <p className="mt-4 text-xl">
+                            <h3 className="block-heading">Easy 🚩</h3>
+                            <p className="block-text">
                                 Learn about countries by guessing their name!
                             </p>
                         </a>
@@ -40,10 +40,10 @@ export default function Play() {
                         pathname: '/play/hard',
                     }}>
                         <a
-                            className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
+                            className="block"
                         >
-                            <h3 className="text-2xl font-bold">Hard 🏴󠁳󠁴󠁸󠁿</h3>
-                            <p className="mt-4 text-xl">
+                            <h3 className="block-heading">Hard 🏴󠁳󠁴󠁸󠁿</h3>
+                            <p className="block-text">
                                 Learn about countries by guessing their name and capital!
                             </p>
                         </a>

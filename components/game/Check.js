@@ -7,10 +7,10 @@ function Check(props) {
             <h3 className="text-5xl font-bold">{props.countries[props.currentIndex].emoji}</h3>
             <p>{props.countries[props.currentIndex].name}{props.difficulty === "hard" ? (<span><br/>{props.countries[props.currentIndex].capital}</span>) : null}</p>
             <Link href={"/flags/" + props.countries[props.currentIndex].code}>
-                <a className="block text-xs hover:text-blue-600">
+                <a className="text-xs hover:text-blue-600">
                     Learn more
                 </a>
-            </Link>
+            </Link><br/>
             <button onClick={props.nextCountry} className="mt-4 px-4 hover:text-blue-600 focus:text-blue-600">Next
                 Flag
             </button>

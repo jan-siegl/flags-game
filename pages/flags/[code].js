@@ -58,22 +58,22 @@ export default function Flag({ country }) {
 
     return (
         <div className="">
-            <main className="flex flex-col items-center justify-center w-full flex-1 px-20 pt-10 text-center">
-                <h1 className="text-6xl font-bold">
+            <main className="main">
+                <h1 className="heading">
                     {country.emoji} <br/>
                     {country.name}
                 </h1>
 
-                <p className="mt-3 text-2xl">
+                <p className="heading-subtext">
                     Code{' '}
-                    <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
+                    <code className="heading-subtext">
                         {country.code}
                     </code>
                 </p>
 
-                <div className="flex flex-wrap items-center justify-center max-w-4xl mt-6 sm:w-full">
+                <div className="block-container-other">
                     <div
-                        className="p-6 px-10 mt-6 mx-2 text-left border rounded-xl"
+                        className="block-nolink"
                     >
                         <p className="text-xl">
                             Continent:

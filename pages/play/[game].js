@@ -104,8 +104,8 @@ function Game(props) {
     }
 
     return (
-        <main className="flex flex-col items-center justify-center w-full flex-1 px-20 pt-10 text-center">
-            <h1 className="text-6xl font-bold">
+        <main className="main">
+            <h1 className="heading">
                 Guess the{' '}
                 <Link href="/">
                     <a className="text-blue-600">
@@ -114,14 +114,14 @@ function Game(props) {
                 </Link>
             </h1>
 
-            <p className="mt-3 text-2xl">
+            <p className="heading-subtext">
                 Your points{' '}
-                <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
+                <code className="heading-code">
                     {points}/{countries.length}
                 </code>
             </p>
 
-            <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 sm:w-full">
+            <div className="flex flex-wrap items-center justify-around max-w-4xl mt-6 w-full">
                 {finished ? <Finish points={points} wrong={countries.length - points}/> : (answered ?
                     <Check difficulty={props.difficulty} correct={correct} countries={countries} currentIndex={currentIndex}
                            nextCountry={nextCountry}/> :

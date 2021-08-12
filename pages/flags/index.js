@@ -54,8 +54,8 @@ export default function Flags(props) {
                 <title>Flags game</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <main className="flex flex-col items-center justify-center w-full flex-1 px-20 pt-10 text-center">
-                <h1 className="text-6xl font-bold">
+            <main className="main">
+                <h1 className="heading">
                     Lets learn{' '}
                     <Link href="/">
                         <a className="text-blue-600">
@@ -64,7 +64,7 @@ export default function Flags(props) {
                     </Link>
                 </h1>
 
-                <p className="mt-6 text-2xl">
+                <p className="heading-subtext">
                     <form>
                         <input onChange={search} type="text" placeholder="Search" />
                         <select onChange={filter} name="Continent" id="continent">
@@ -74,7 +74,7 @@ export default function Flags(props) {
                     </form>
                 </p>
 
-                <div className="flex flex-wrap items-center justify-center max-w-4xl mt-6 sm:w-full">
+                <div className="block-container">
                     {countries.map((country) => (
                         <FlagTile {...country} />
                     ))}
